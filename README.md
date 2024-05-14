@@ -8,3 +8,15 @@
 - add_block
 - create_blockchain
 - print
+
+
+
+### Run
+how to build 
+```
+cargo b
+```
+how to luanch
+```
+./target/debug/rustBlockChain
+```
