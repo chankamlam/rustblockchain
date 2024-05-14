@@ -18,5 +18,5 @@ cargo b
 ```
 how to luanch
 ```
-./target/debug/rustBlockChain
+./target/debug/rustBlockchain
 ```
