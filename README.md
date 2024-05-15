@@ -9,6 +9,14 @@
 - create_blockchain
 - print
 
+### Version 0.2
+###### Add ProofOfWork
+- create_proof
+- prepare_data
+- run
+###### Remove Block
+- derive_block
+
 
 
 ### Run

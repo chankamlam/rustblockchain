@@ -1,7 +1,8 @@
 use crate::blockchain::Blockchain;
 
 mod block;
-mod blockchain; // Add this line
+mod blockchain;
+mod proof; // Add this line
 
 fn main() {
     let mut blockchain = Blockchain::create_blockchain(); // Update this line
