@@ -1,6 +1,6 @@
 
-use sha2::{Digest, Sha256};
 use crate::proof::ProofOfWork;
+use crate::util::vec2hex;
 
 // create a block class
 pub struct Block {
@@ -31,21 +31,7 @@ impl Block {
     }
     pub fn print(&self) {
         println!("data: {}", self.data);
-
-        // println prev_hash convert to hex string
-        let prev_hash_str = self
-            .prev_hash
-            .iter()
-            .map(|b| format!("{:02x}", b))
-            .collect::<String>();
-        println!("prev_hash: {}", prev_hash_str);
-
-        // println hash convert to hex string
-        let hash_str = self
-            .hash
-            .iter()
-            .map(|b| format!("{:02x}", b))
-            .collect::<String>();
-        println!("hash: {}\n", hash_str);
+        println!("prev_hash: {}", vec2hex(&self.prev_hash));
+        println!("hash: {}\n", vec2hex(&self.hash));
     }
 }

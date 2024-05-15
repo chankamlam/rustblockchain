@@ -9,10 +9,11 @@ pub struct ProofOfWork<'a> {
 const DIFFICULTY: u64 = 18;
 impl<'a> ProofOfWork<'a> {
     pub fn create_proof(block: &'a Block) -> ProofOfWork<'a> {
-        let target = BigUint::from(1u64);
+        let mut target = BigUint::from(1u64);
+        target = target << (256-DIFFICULTY);
         ProofOfWork {
             block: block,
-            target: target<<(256-DIFFICULTY),
+            target: target,
         }
     }
     pub fn prepare_data(&self, nonce: u64) -> Vec<u8> {
