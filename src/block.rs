@@ -13,20 +13,22 @@
 
     // create a block constructor
     impl Block {
+        pub fn derive_hash(&self) -> Vec<u8> {
+            let mut hasher = Sha256::new();
+
+            hasher.update(vec![self.data.as_bytes().to_vec(), self.prev_hash.clone()].concat());
+            // hasher.update(&self.prev_hash);
+            hasher.finalize().to_vec()
+
+        }
         pub fn create_genesis() -> Block {
-            let mut block = Block {
-                data: "Genesis Block".to_string(),
-                prev_hash: vec![],
-                hash: vec![],
-            };
-            block.hash = block.derive_hash().to_vec();
-            block
+            Block::create_block("Genesis Block".to_string(), vec![])
         }
         pub fn create_block(data: String, prev_hash: Vec<u8>) -> Block {
             let mut block = Block {
                 data: data,
                 prev_hash: prev_hash,
-                hash: vec![0; 32],
+                hash: vec![],
             };
             block.hash = block.derive_hash().to_vec();
             block
@@ -42,14 +44,7 @@
             let hash_str = self.hash.iter().map(|b| format!("{:02x}", b)).collect::<String>();
             println!("hash: {}\n", hash_str);
         }
-        pub fn derive_hash(&self) -> Vec<u8> {
-            let mut hasher = Sha256::new();
 
-            hasher.update(vec![self.data.as_bytes().to_vec(), self.prev_hash.clone()].concat());
-            // hasher.update(&self.prev_hash);
-            hasher.finalize().to_vec()
-
-        }
     }
 
 // }
